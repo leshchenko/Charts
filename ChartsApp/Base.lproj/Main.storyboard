@@ -19,19 +19,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4N-Ar-y8I" customClass="ChartsView" customModule="ChartsApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="269.5" width="375" height="128"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="06H-wJ-sqw"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="m4N-Ar-y8I" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="20a-M9-Q2J"/>
-                            <constraint firstItem="m4N-Ar-y8I" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="AQy-ub-iO6"/>
                             <constraint firstItem="m4N-Ar-y8I" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AZK-pq-d1E"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m4N-Ar-y8I" secondAttribute="trailing" id="Urf-HI-RG2"/>
+                            <constraint firstItem="m4N-Ar-y8I" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gQE-el-1ft"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="m4N-Ar-y8I" secondAttribute="bottom" id="tpJ-g4-mmY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
