@@ -12,7 +12,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+       
+        if let path = Bundle.main.path(forResource: "chart_data", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let charts = try JSONDecoder().decode(ChartsResponseModel.self, from: data)
+                print(charts)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 
 

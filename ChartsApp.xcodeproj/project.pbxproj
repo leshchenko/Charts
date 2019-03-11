@@ -14,6 +14,8 @@
 		8604394B2236415300AB3089 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 860439492236415300AB3089 /* LaunchScreen.storyboard */; };
 		860439562236415300AB3089 /* ChartsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860439552236415300AB3089 /* ChartsAppTests.swift */; };
 		860439612236415400AB3089 /* ChartsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860439602236415400AB3089 /* ChartsAppUITests.swift */; };
+		8604396F2236418100AB3089 /* chart_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 8604396E2236418100AB3089 /* chart_data.json */; };
+		860439712236422000AB3089 /* ChartsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860439702236422000AB3089 /* ChartsResponseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		8604395C2236415400AB3089 /* ChartsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChartsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		860439602236415400AB3089 /* ChartsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsAppUITests.swift; sourceTree = "<group>"; };
 		860439622236415400AB3089 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8604396E2236418100AB3089 /* chart_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chart_data.json; sourceTree = "<group>"; };
+		860439702236422000AB3089 /* ChartsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsResponseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +101,14 @@
 		8604393F2236415100AB3089 /* ChartsApp */ = {
 			isa = PBXGroup;
 			children = (
+				8604396E2236418100AB3089 /* chart_data.json */,
 				860439402236415100AB3089 /* AppDelegate.swift */,
 				860439422236415100AB3089 /* ViewController.swift */,
 				860439442236415100AB3089 /* Main.storyboard */,
 				860439472236415300AB3089 /* Assets.xcassets */,
 				860439492236415300AB3089 /* LaunchScreen.storyboard */,
 				8604394C2236415300AB3089 /* Info.plist */,
+				860439702236422000AB3089 /* ChartsResponseModel.swift */,
 			);
 			path = ChartsApp;
 			sourceTree = "<group>";
@@ -231,6 +237,7 @@
 			files = (
 				8604394B2236415300AB3089 /* LaunchScreen.storyboard in Resources */,
 				860439482236415300AB3089 /* Assets.xcassets in Resources */,
+				8604396F2236418100AB3089 /* chart_data.json in Resources */,
 				860439462236415100AB3089 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				860439712236422000AB3089 /* ChartsResponseModel.swift in Sources */,
 				860439432236415100AB3089 /* ViewController.swift in Sources */,
 				860439412236415100AB3089 /* AppDelegate.swift in Sources */,
 			);
