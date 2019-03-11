@@ -12,6 +12,7 @@ class ChartsView: UIView {
     
     var selectedChartPosition: Int = 3
     var centerX: NSLayoutConstraint?
+    var initialCenterValue: CGFloat = 0
     
     var chartsData: ChartsResponseModel?
     
@@ -89,7 +90,7 @@ class ChartsView: UIView {
             attribute: .centerX,
             multiplier: 1,
             constant:0)
-        
+        initialCenterValue = centerX?.constant ?? 0
         let widthConstraint = NSLayoutConstraint(
             item: controlView,
             attribute: .width,
@@ -114,7 +115,7 @@ class ChartsView: UIView {
         let point = gesture.translation(in: self)
     
         print("Point -> \(point.x)")
-        centerX?.constant += point.x
+        centerX?.constant = initialCenterValue + point.x
     }
     
     override func awakeFromNib() {
