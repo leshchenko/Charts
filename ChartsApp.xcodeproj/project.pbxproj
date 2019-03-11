@@ -16,6 +16,8 @@
 		860439612236415400AB3089 /* ChartsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860439602236415400AB3089 /* ChartsAppUITests.swift */; };
 		8604396F2236418100AB3089 /* chart_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 8604396E2236418100AB3089 /* chart_data.json */; };
 		860439712236422000AB3089 /* ChartsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860439702236422000AB3089 /* ChartsResponseModel.swift */; };
+		8604397322365B5800AB3089 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604397222365B5800AB3089 /* Utils.swift */; };
+		8604397622365BB900AB3089 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604397522365BB900AB3089 /* ChartsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		860439622236415400AB3089 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8604396E2236418100AB3089 /* chart_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chart_data.json; sourceTree = "<group>"; };
 		860439702236422000AB3089 /* ChartsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsResponseModel.swift; sourceTree = "<group>"; };
+		8604397222365B5800AB3089 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		8604397522365BB900AB3089 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		8604393F2236415100AB3089 /* ChartsApp */ = {
 			isa = PBXGroup;
 			children = (
+				8604397422365BA500AB3089 /* ChartsView */,
 				8604396E2236418100AB3089 /* chart_data.json */,
 				860439402236415100AB3089 /* AppDelegate.swift */,
 				860439422236415100AB3089 /* ViewController.swift */,
@@ -109,6 +114,7 @@
 				860439492236415300AB3089 /* LaunchScreen.storyboard */,
 				8604394C2236415300AB3089 /* Info.plist */,
 				860439702236422000AB3089 /* ChartsResponseModel.swift */,
+				8604397222365B5800AB3089 /* Utils.swift */,
 			);
 			path = ChartsApp;
 			sourceTree = "<group>";
@@ -129,6 +135,14 @@
 				860439622236415400AB3089 /* Info.plist */,
 			);
 			path = ChartsAppUITests;
+			sourceTree = "<group>";
+		};
+		8604397422365BA500AB3089 /* ChartsView */ = {
+			isa = PBXGroup;
+			children = (
+				8604397522365BB900AB3089 /* ChartsView.swift */,
+			);
+			path = ChartsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,7 +279,9 @@
 			files = (
 				860439712236422000AB3089 /* ChartsResponseModel.swift in Sources */,
 				860439432236415100AB3089 /* ViewController.swift in Sources */,
+				8604397622365BB900AB3089 /* ChartsView.swift in Sources */,
 				860439412236415100AB3089 /* AppDelegate.swift in Sources */,
+				8604397322365B5800AB3089 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

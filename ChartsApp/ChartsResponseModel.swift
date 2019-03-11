@@ -12,7 +12,7 @@ typealias ChartsResponseModel = [ChartsResponseModelElement]
 
 struct ChartsResponseModelElement: Codable {
     let columns: [[Column]]
-    let types, names, colors: AdditionalData
+    let types, names, colors: Dictionary<String, String>
 }
 
 struct AdditionalData: Codable {
@@ -45,4 +45,9 @@ enum Column: Codable {
             try container.encode(x)
         }
     }
+}
+
+enum ChartTypes: String {
+    case x = "x"
+    case line = "line"
 }

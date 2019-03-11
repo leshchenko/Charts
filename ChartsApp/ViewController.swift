@@ -10,18 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var chartsView: ChartsView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        if let path = Bundle.main.path(forResource: "chart_data", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let charts = try JSONDecoder().decode(ChartsResponseModel.self, from: data)
-                print(charts)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
+        chartsView.chartsData = Utils.fetchChartsData()
+        chartsView.setNeedsLayout()
     }
 
 
