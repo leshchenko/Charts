@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChartsView: UIView {
+class ChartsNavigationView: UIView {
     
     var selectedChartPosition: Int = 3
     var centerX: NSLayoutConstraint?
@@ -17,9 +17,7 @@ class ChartsView: UIView {
     var chartsData: ChartsResponseModel?
     
     override func draw(_ rect: CGRect) {
-        
-        let rectForChartsNavigation = CGRect.init(x: 0, y: rect.height - 100, width: rect.width, height: rect.height * 0.1)
-        drawChartsNavigation(in: rectForChartsNavigation)
+        drawChartsNavigation(in: rect)
     }
     
     
@@ -76,8 +74,8 @@ class ChartsView: UIView {
         }
         
         
-        let controlView = UIView.init(frame: CGRect.init(x: rect.minX, y:rect.minY, width: rect.width * 0.3, height: rect.height))
-        controlView.backgroundColor = UIColor.black
+        let controlView = ChartsControllView.init(frame: CGRect.init(x: rect.minX, y:rect.minY, width: rect.width * 0.3, height: rect.height))
+//        controlView.backgroundColor = UIColor.white
         controlView.translatesAutoresizingMaskIntoConstraints = false
         controlView.addGestureRecognizer(UIPanGestureRecognizer.init(target: self, action: #selector(chartsControllPan(gesture:))))
         addSubview(controlView)
@@ -91,6 +89,7 @@ class ChartsView: UIView {
             multiplier: 1,
             constant:0)
         initialCenterValue = centerX?.constant ?? 0
+        
         let widthConstraint = NSLayoutConstraint(
             item: controlView,
             attribute: .width,
@@ -98,24 +97,36 @@ class ChartsView: UIView {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant:100)
+            constant:rect.width * 0.3)
         
-        let heightConstraint = NSLayoutConstraint(
+        let bottomConstraint = NSLayoutConstraint(
             item: controlView,
-            attribute: .height,
+            attribute: .bottom,
             relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
+            toItem: self,
+            attribute: .bottom,
             multiplier: 1,
-            constant:rect.height)
-        self.addConstraints([centerX!, widthConstraint, heightConstraint])
+            constant:0)
+        
+        let topConstraint = NSLayoutConstraint(
+            item: controlView,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .top,
+            multiplier: 1,
+            constant:0)
+        self.addConstraints([centerX!, widthConstraint, topConstraint, bottomConstraint])
     }
     
     @objc private func chartsControllPan(gesture: UIPanGestureRecognizer) {
         let point = gesture.translation(in: self)
     
-        print("Point -> \(point.x)")
-        centerX?.constant = initialCenterValue + point.x
+        if gesture.state == .changed {
+            centerX?.constant = initialCenterValue + point.x
+        } else if gesture.state == .ended {
+            initialCenterValue = centerX?.constant ?? 0
+        }
     }
     
     override func awakeFromNib() {

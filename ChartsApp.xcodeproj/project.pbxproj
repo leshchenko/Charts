@@ -17,8 +17,10 @@
 		8604396F2236418100AB3089 /* chart_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 8604396E2236418100AB3089 /* chart_data.json */; };
 		860439712236422000AB3089 /* ChartsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860439702236422000AB3089 /* ChartsResponseModel.swift */; };
 		8604397322365B5800AB3089 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604397222365B5800AB3089 /* Utils.swift */; };
-		8604397622365BB900AB3089 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604397522365BB900AB3089 /* ChartsView.swift */; };
+		8604397622365BB900AB3089 /* ChartsNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604397522365BB900AB3089 /* ChartsNavigationView.swift */; };
 		CC1257F22236DC48005C90F1 /* UIKitExtensions+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1257F12236DC48005C90F1 /* UIKitExtensions+UIColor.swift */; };
+		CC9BD5E72238153900439DEA /* ChartsControllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9BD5E62238153900439DEA /* ChartsControllView.swift */; };
+		CC9BD5E922381B7600439DEA /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9BD5E822381B7600439DEA /* ArrowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +57,10 @@
 		8604396E2236418100AB3089 /* chart_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chart_data.json; sourceTree = "<group>"; };
 		860439702236422000AB3089 /* ChartsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsResponseModel.swift; sourceTree = "<group>"; };
 		8604397222365B5800AB3089 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		8604397522365BB900AB3089 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
+		8604397522365BB900AB3089 /* ChartsNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsNavigationView.swift; sourceTree = "<group>"; };
 		CC1257F12236DC48005C90F1 /* UIKitExtensions+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKitExtensions+UIColor.swift"; sourceTree = "<group>"; };
+		CC9BD5E62238153900439DEA /* ChartsControllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsControllView.swift; sourceTree = "<group>"; };
+		CC9BD5E822381B7600439DEA /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +147,9 @@
 		8604397422365BA500AB3089 /* ChartsView */ = {
 			isa = PBXGroup;
 			children = (
-				8604397522365BB900AB3089 /* ChartsView.swift */,
+				8604397522365BB900AB3089 /* ChartsNavigationView.swift */,
+				CC9BD5E62238153900439DEA /* ChartsControllView.swift */,
+				CC9BD5E822381B7600439DEA /* ArrowView.swift */,
 			);
 			path = ChartsView;
 			sourceTree = "<group>";
@@ -296,9 +302,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC9BD5E922381B7600439DEA /* ArrowView.swift in Sources */,
 				860439712236422000AB3089 /* ChartsResponseModel.swift in Sources */,
 				860439432236415100AB3089 /* ViewController.swift in Sources */,
-				8604397622365BB900AB3089 /* ChartsView.swift in Sources */,
+				8604397622365BB900AB3089 /* ChartsNavigationView.swift in Sources */,
+				CC9BD5E72238153900439DEA /* ChartsControllView.swift in Sources */,
 				860439412236415100AB3089 /* AppDelegate.swift in Sources */,
 				CC1257F22236DC48005C90F1 /* UIKitExtensions+UIColor.swift in Sources */,
 				8604397322365B5800AB3089 /* Utils.swift in Sources */,
