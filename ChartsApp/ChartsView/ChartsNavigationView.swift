@@ -11,10 +11,77 @@ import UIKit
 class ChartsNavigationView: UIView {
     
     var selectedChartPosition: Int = 3
-    var centerX: NSLayoutConstraint?
-    var initialCenterValue: CGFloat = 0
+    var leftConstraint: NSLayoutConstraint?
+    var rightConstraint: NSLayoutConstraint?
+    
+    var initialLeftConstraintValue: CGFloat = 0
+    var initialRightConstraintValue: CGFloat = 0
     
     var chartsData: ChartsResponseModel?
+    
+    private var chartsControllView: ChartsControllView?
+    private let minChartsControllWidth:CGFloat = 100
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+        
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    fileprivate func setup() {
+        chartsControllView = ChartsControllView()
+        if let controllView = chartsControllView {
+            controllView.delegate = self
+            controllView.translatesAutoresizingMaskIntoConstraints = false
+            controllView.addGestureRecognizer(UIPanGestureRecognizer.init(target: self, action: #selector(chartsControllPan(gesture:))))
+            addSubview(controllView)
+            
+            
+            leftConstraint = NSLayoutConstraint(item: controllView,
+                                                attribute: .leading,
+                                                relatedBy: .equal,
+                                                toItem: self,
+                                                attribute: .leading,
+                                                multiplier: 1,
+                                                constant: frame.width - (frame.width * 0.5))
+            initialLeftConstraintValue = leftConstraint?.constant ?? 0
+            
+            rightConstraint = NSLayoutConstraint.init(item: controllView,
+                                                      attribute: .trailing,
+                                                      relatedBy: .equal,
+                                                      toItem: self,
+                                                      attribute: .trailing,
+                                                      multiplier: 1,
+                                                      constant: 0)
+            initialRightConstraintValue = rightConstraint?.constant ?? 0
+            
+            
+            
+            let bottomConstraint = NSLayoutConstraint(
+                item: controllView,
+                attribute: .bottom,
+                relatedBy: .equal,
+                toItem: self,
+                attribute: .bottom,
+                multiplier: 1,
+                constant:0)
+            
+            let topConstraint = NSLayoutConstraint(
+                item: controllView,
+                attribute: .top,
+                relatedBy: .equal,
+                toItem: self,
+                attribute: .top,
+                multiplier: 1,
+                constant:0)
+            self.addConstraints([leftConstraint!, rightConstraint!, topConstraint, bottomConstraint])
+            controllView.setNeedsLayout()
+        }
+    }
     
     override func draw(_ rect: CGRect) {
         drawChartsNavigation(in: rect)
@@ -70,66 +137,65 @@ class ChartsNavigationView: UIView {
                 UIColor.init(hexFromString: chartData.colors[yData.key] ?? "").setStroke()
                 path.stroke()
             }
-            
         }
-        
-        
-        let controlView = ChartsControllView.init(frame: CGRect.init(x: rect.minX, y:rect.minY, width: rect.width * 0.3, height: rect.height))
-//        controlView.backgroundColor = UIColor.white
-        controlView.translatesAutoresizingMaskIntoConstraints = false
-        controlView.addGestureRecognizer(UIPanGestureRecognizer.init(target: self, action: #selector(chartsControllPan(gesture:))))
-        addSubview(controlView)
-        
-        centerX = NSLayoutConstraint(
-            item: controlView,
-            attribute: .centerX,
-            relatedBy: .equal,
-            toItem: self,
-            attribute: .centerX,
-            multiplier: 1,
-            constant:0)
-        initialCenterValue = centerX?.constant ?? 0
-        
-        let widthConstraint = NSLayoutConstraint(
-            item: controlView,
-            attribute: .width,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant:rect.width * 0.3)
-        
-        let bottomConstraint = NSLayoutConstraint(
-            item: controlView,
-            attribute: .bottom,
-            relatedBy: .equal,
-            toItem: self,
-            attribute: .bottom,
-            multiplier: 1,
-            constant:0)
-        
-        let topConstraint = NSLayoutConstraint(
-            item: controlView,
-            attribute: .top,
-            relatedBy: .equal,
-            toItem: self,
-            attribute: .top,
-            multiplier: 1,
-            constant:0)
-        self.addConstraints([centerX!, widthConstraint, topConstraint, bottomConstraint])
     }
     
     @objc private func chartsControllPan(gesture: UIPanGestureRecognizer) {
         let point = gesture.translation(in: self)
-    
         if gesture.state == .changed {
-            centerX?.constant = initialCenterValue + point.x
+            if initialLeftConstraintValue + point.x <= 0 {
+                leftConstraint?.constant = 0
+            } else if initialRightConstraintValue + point.x >= 0 {
+                rightConstraint?.constant = 0
+            } else {
+                leftConstraint?.constant = initialLeftConstraintValue + point.x
+                rightConstraint?.constant = initialRightConstraintValue + point.x
+            }
         } else if gesture.state == .ended {
-            initialCenterValue = centerX?.constant ?? 0
+            initialLeftConstraintValue = leftConstraint?.constant ?? 0
+            initialRightConstraintValue = rightConstraint?.constant ?? 0
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
+}
+
+// MARK: - ChartsControllViewDelegate
+extension ChartsNavigationView: ChartsControllViewDelegate {
+    func arrowPan(gesture: UIPanGestureRecognizer) {
+        let point = gesture.translation(in: self)
+        let isLeftSwipe = gesture.velocity(in: self).x < 0
+        if gesture.state == .changed {
+            if gesture.view?.tag == ChartsControllView.leftArrowTag {
+                if initialLeftConstraintValue + point.x <= 0 {
+                    leftConstraint?.constant = 0
+                    initialLeftConstraintValue = 0
+                    gesture.isEnabled = false
+                } else {
+                    if chartsControllView?.frame.width ?? 0 <= minChartsControllWidth && !isLeftSwipe {
+                        gesture.isEnabled = false
+                        initialLeftConstraintValue = leftConstraint?.constant ?? 0
+                        return
+                    }
+                    leftConstraint?.constant = initialLeftConstraintValue + point.x
+                }
+            } else if gesture.view?.tag == ChartsControllView.rightArrowTag {
+                if initialRightConstraintValue + point.x >= 0 {
+                    rightConstraint?.constant = 0
+                    initialRightConstraintValue = 0
+                    gesture.isEnabled = false
+                } else {
+                    if chartsControllView?.frame.width ?? 0 <= minChartsControllWidth && isLeftSwipe {
+                        gesture.isEnabled = false
+                        initialRightConstraintValue = rightConstraint?.constant ?? 0
+                        return
+                    }
+                     rightConstraint?.constant = initialRightConstraintValue + point.x
+                }
+            }
+        } else if gesture.state == .ended {
+            initialLeftConstraintValue = leftConstraint?.constant ?? 0
+            initialRightConstraintValue = rightConstraint?.constant ?? 0
+        } else if gesture.state == .cancelled {
+            gesture.isEnabled = true
+        }
     }
 }

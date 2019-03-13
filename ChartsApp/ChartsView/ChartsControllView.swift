@@ -8,27 +8,61 @@
 
 import UIKit
 
+protocol ChartsControllViewDelegate {
+    func arrowPan(gesture: UIPanGestureRecognizer)
+}
 class ChartsControllView: UIView {
-
-    override func draw(_ rect: CGRect) {
-        let leftArrowView = ArrowView.init(frame: .init(x: 0, y: 0, width: rect.width * 0.2, height: rect.height), isLeftArrow: true)
-        addSubview(leftArrowView)
-        let rightArrowView = ArrowView.init(frame: .init(x: rect.width - rect.width * 0.2, y: 0, width: rect.width * 0.2, height: rect.height), isLeftArrow: false)
-        addSubview(rightArrowView)
-    }
+    
+    static let leftArrowTag = 1001
+    static let rightArrowTag = 1002
+    
+    var delegate: ChartsControllViewDelegate?
+    
+    private var leftArrowView: UIView?
+    private var rightArrowView: UIView?
+    
+    private let arrowViewWidth: CGFloat = 20
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        backgroundColor = UIColor.clear
+        setup()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setup()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        redrawViews()
+    }
+    
+    fileprivate func setup() {
+        leftArrowView = ArrowView.init(frame: .init(x: 0, y: 0, width: arrowViewWidth, height: frame.height), isLeftArrow: true)
+        leftArrowView?.tag = ChartsControllView.leftArrowTag
+        leftArrowView?.addGestureRecognizer(UIPanGestureRecognizer.init(target: self, action: #selector(arrow(pan:))))
+        addSubview(view: leftArrowView)
+        
+        rightArrowView = ArrowView.init(frame: .init(x: frame.width - arrowViewWidth, y: 0, width: arrowViewWidth, height: frame.height), isLeftArrow: false)
+        rightArrowView?.tag = ChartsControllView.rightArrowTag
+        rightArrowView?.addGestureRecognizer(UIPanGestureRecognizer.init(target: self, action: #selector(arrow(pan:))))
+        addSubview(view: rightArrowView)
+        
         backgroundColor = UIColor.clear
         clipsToBounds = true
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 10
+    }
+    
+    fileprivate func redrawViews() {
+        leftArrowView?.frame = .init(x: 0, y: 0, width: arrowViewWidth, height: frame.height)
+        rightArrowView?.frame = .init(x: frame.width - arrowViewWidth, y: 0, width: arrowViewWidth, height: frame.height)
+    }
+    
+    @objc fileprivate func arrow(pan: UIPanGestureRecognizer) {
+        delegate?.arrowPan(gesture: pan)
     }
 
 }

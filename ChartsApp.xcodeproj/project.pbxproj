@@ -18,6 +18,7 @@
 		860439712236422000AB3089 /* ChartsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860439702236422000AB3089 /* ChartsResponseModel.swift */; };
 		8604397322365B5800AB3089 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604397222365B5800AB3089 /* Utils.swift */; };
 		8604397622365BB900AB3089 /* ChartsNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604397522365BB900AB3089 /* ChartsNavigationView.swift */; };
+		860439822239544D00AB3089 /* UIKitExtensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860439812239544D00AB3089 /* UIKitExtensions+UIView.swift */; };
 		CC1257F22236DC48005C90F1 /* UIKitExtensions+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1257F12236DC48005C90F1 /* UIKitExtensions+UIColor.swift */; };
 		CC9BD5E72238153900439DEA /* ChartsControllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9BD5E62238153900439DEA /* ChartsControllView.swift */; };
 		CC9BD5E922381B7600439DEA /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9BD5E822381B7600439DEA /* ArrowView.swift */; };
@@ -58,6 +59,7 @@
 		860439702236422000AB3089 /* ChartsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsResponseModel.swift; sourceTree = "<group>"; };
 		8604397222365B5800AB3089 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		8604397522365BB900AB3089 /* ChartsNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsNavigationView.swift; sourceTree = "<group>"; };
+		860439812239544D00AB3089 /* UIKitExtensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKitExtensions+UIView.swift"; sourceTree = "<group>"; };
 		CC1257F12236DC48005C90F1 /* UIKitExtensions+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKitExtensions+UIColor.swift"; sourceTree = "<group>"; };
 		CC9BD5E62238153900439DEA /* ChartsControllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsControllView.swift; sourceTree = "<group>"; };
 		CC9BD5E822381B7600439DEA /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				CC1257F12236DC48005C90F1 /* UIKitExtensions+UIColor.swift */,
+				860439812239544D00AB3089 /* UIKitExtensions+UIView.swift */,
 			);
 			path = UIKitExtensions;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				860439712236422000AB3089 /* ChartsResponseModel.swift in Sources */,
 				860439432236415100AB3089 /* ViewController.swift in Sources */,
 				8604397622365BB900AB3089 /* ChartsNavigationView.swift in Sources */,
+				860439822239544D00AB3089 /* UIKitExtensions+UIView.swift in Sources */,
 				CC9BD5E72238153900439DEA /* ChartsControllView.swift in Sources */,
 				860439412236415100AB3089 /* AppDelegate.swift in Sources */,
 				CC1257F22236DC48005C90F1 /* UIKitExtensions+UIColor.swift in Sources */,
@@ -484,7 +488,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NK459KTUU6;
 				INFOPLIST_FILE = ChartsApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -492,6 +498,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leshchenko.ChartsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -501,7 +508,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NK459KTUU6;
 				INFOPLIST_FILE = ChartsApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -509,6 +518,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leshchenko.ChartsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
