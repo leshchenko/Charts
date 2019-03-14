@@ -19,6 +19,8 @@
 		8604397322365B5800AB3089 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604397222365B5800AB3089 /* Utils.swift */; };
 		8604397622365BB900AB3089 /* ChartsNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604397522365BB900AB3089 /* ChartsNavigationView.swift */; };
 		860439822239544D00AB3089 /* UIKitExtensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860439812239544D00AB3089 /* UIKitExtensions+UIView.swift */; };
+		86043985223A556700AB3089 /* R.color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86043984223A556700AB3089 /* R.color.swift */; };
+		86043988223A55BF00AB3089 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86043987223A55BF00AB3089 /* Resources.swift */; };
 		CC1257F22236DC48005C90F1 /* UIKitExtensions+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1257F12236DC48005C90F1 /* UIKitExtensions+UIColor.swift */; };
 		CC9BD5E72238153900439DEA /* ChartsControllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9BD5E62238153900439DEA /* ChartsControllView.swift */; };
 		CC9BD5E922381B7600439DEA /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9BD5E822381B7600439DEA /* ArrowView.swift */; };
@@ -60,6 +62,10 @@
 		8604397222365B5800AB3089 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		8604397522365BB900AB3089 /* ChartsNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsNavigationView.swift; sourceTree = "<group>"; };
 		860439812239544D00AB3089 /* UIKitExtensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKitExtensions+UIView.swift"; sourceTree = "<group>"; };
+		86043983223A3B5300AB3089 /* ChartsApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChartsApp.entitlements; sourceTree = "<group>"; };
+		86043984223A556700AB3089 /* R.color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.color.swift; sourceTree = "<group>"; };
+		86043987223A55BF00AB3089 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		86043989223A577F00AB3089 /* ChartsApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChartsApp.entitlements; sourceTree = "<group>"; };
 		CC1257F12236DC48005C90F1 /* UIKitExtensions+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKitExtensions+UIColor.swift"; sourceTree = "<group>"; };
 		CC9BD5E62238153900439DEA /* ChartsControllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsControllView.swift; sourceTree = "<group>"; };
 		CC9BD5E822381B7600439DEA /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
@@ -97,6 +103,7 @@
 				860439542236415300AB3089 /* ChartsAppTests */,
 				8604395F2236415400AB3089 /* ChartsAppUITests */,
 				8604393E2236415100AB3089 /* Products */,
+				86043983223A3B5300AB3089 /* ChartsApp.entitlements */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,15 +120,14 @@
 		8604393F2236415100AB3089 /* ChartsApp */ = {
 			isa = PBXGroup;
 			children = (
+				86043989223A577F00AB3089 /* ChartsApp.entitlements */,
+				86043986223A55AE00AB3089 /* Resources */,
 				CC1257EF2236DC06005C90F1 /* Extensions */,
 				8604397422365BA500AB3089 /* ChartsView */,
-				8604396E2236418100AB3089 /* chart_data.json */,
 				860439402236415100AB3089 /* AppDelegate.swift */,
 				860439422236415100AB3089 /* ViewController.swift */,
 				860439442236415100AB3089 /* Main.storyboard */,
-				860439472236415300AB3089 /* Assets.xcassets */,
 				860439492236415300AB3089 /* LaunchScreen.storyboard */,
-				8604394C2236415300AB3089 /* Info.plist */,
 				860439702236422000AB3089 /* ChartsResponseModel.swift */,
 				8604397222365B5800AB3089 /* Utils.swift */,
 			);
@@ -156,10 +162,22 @@
 			path = ChartsView;
 			sourceTree = "<group>";
 		};
+		86043986223A55AE00AB3089 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8604396E2236418100AB3089 /* chart_data.json */,
+				860439472236415300AB3089 /* Assets.xcassets */,
+				8604394C2236415300AB3089 /* Info.plist */,
+				86043987223A55BF00AB3089 /* Resources.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CC1257EF2236DC06005C90F1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				CC1257F02236DC0C005C90F1 /* UIKitExtensions */,
+				86043984223A556700AB3089 /* R.color.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -241,6 +259,14 @@
 				TargetAttributes = {
 					8604393C2236415100AB3089 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 					860439502236415300AB3089 = {
 						CreatedOnToolsVersion = 10.1;
@@ -308,12 +334,14 @@
 				CC9BD5E922381B7600439DEA /* ArrowView.swift in Sources */,
 				860439712236422000AB3089 /* ChartsResponseModel.swift in Sources */,
 				860439432236415100AB3089 /* ViewController.swift in Sources */,
+				86043985223A556700AB3089 /* R.color.swift in Sources */,
 				8604397622365BB900AB3089 /* ChartsNavigationView.swift in Sources */,
 				860439822239544D00AB3089 /* UIKitExtensions+UIView.swift in Sources */,
 				CC9BD5E72238153900439DEA /* ChartsControllView.swift in Sources */,
 				860439412236415100AB3089 /* AppDelegate.swift in Sources */,
 				CC1257F22236DC48005C90F1 /* UIKitExtensions+UIColor.swift in Sources */,
 				8604397322365B5800AB3089 /* Utils.swift in Sources */,
+				86043988223A55BF00AB3089 /* Resources.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +428,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = ChartsApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -461,6 +490,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = ChartsApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -491,12 +521,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NK459KTUU6;
-				INFOPLIST_FILE = ChartsApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ChartsApp/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leshchenko.ChartsApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leshchenko.ChartsApp2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -511,12 +541,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NK459KTUU6;
-				INFOPLIST_FILE = ChartsApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ChartsApp/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leshchenko.ChartsApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leshchenko.ChartsApp2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

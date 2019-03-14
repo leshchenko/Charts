@@ -51,9 +51,9 @@ class ChartsControllView: UIView {
         
         backgroundColor = UIColor.clear
         clipsToBounds = true
-        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderColor = R.color.chartsControlArrowsColor().cgColor
         layer.borderWidth = 1
-        layer.cornerRadius = 10
+        layer.cornerRadius = 4
     }
     
     fileprivate func redrawViews() {
