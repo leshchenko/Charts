@@ -8,19 +8,28 @@
 
 import UIKit
 
+protocol ChartsNavigationViewDelegate {
+    func selectedValues(indexes: [Int])
+}
+
 class ChartsNavigationView: UIView {
-    
-    var selectedChartPosition: Int = 3
+
     var leftConstraint: NSLayoutConstraint?
     var rightConstraint: NSLayoutConstraint?
     
     var initialLeftConstraintValue: CGFloat = 0
     var initialRightConstraintValue: CGFloat = 0
     
-    var chartsData: ChartsResponseModel?
+    var delegate: ChartsNavigationViewDelegate?
+    
+    private var xData: [Int] = []
+    private var chartsYData: [String: [Int]] = [:]
+    private var yHeightPointStep: CGFloat = 0.0
+    private var xWidthPointStep: CGFloat = 0.0
+    private var chartData: ChartsResponseModelElement?
     
     private var chartsControllView: ChartsControllView?
-    private let minChartsControllWidth:CGFloat = 100
+    private let minChartsControllWidth: CGFloat = 100
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,6 +39,39 @@ class ChartsNavigationView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
+    }
+    
+    func update(chartData: ChartsResponseModelElement?) {
+        self.chartData = chartData
+        if let chartData = chartData {
+            chartData.columns.forEach { (column) in
+                if let nameElement = column.first, case let .string(name) = nameElement {
+                    
+                    if chartData.types[name] == ChartTypes.x.rawValue {
+                        column.forEach({ (xPoint) in
+                            if case let .integer(point) = xPoint {
+                                xData.append(point)
+                            }
+                        })
+                    } else {
+                        var yData:[Int] = []
+                        column.forEach({ (yPoint) in
+                            if case let .integer(point) = yPoint {
+                                yData.append(point)
+                            }
+                            
+                        })
+                        chartsYData[name] = yData
+                    }
+                    
+                }
+            }
+            var maxElements:[Int] = []
+            chartsYData.forEach({ maxElements.append($0.value.max() ?? 0) })
+            
+            yHeightPointStep = frame.height / CGFloat(integerLiteral: maxElements.max() ?? 0)
+            xWidthPointStep = frame.width/CGFloat(integerLiteral: xData.count)
+        }
     }
     
     fileprivate func setup() {
@@ -173,41 +215,8 @@ class ChartsNavigationView: UIView {
         drawChartsNavigation(in: rect)
     }
     
-    
     private func drawChartsNavigation(in rect: CGRect) {
-        if let chartData = chartsData?[selectedChartPosition] {
-            let width = rect.width
-            let height = rect.height
-            var xData:[Int] = []
-            var chartsYData:[String:[Int]] = [:]
-            chartData.columns.forEach { (column) in
-                if let nameElement = column.first, case let .string(name) = nameElement {
-                    
-                    if chartData.types[name] == ChartTypes.x.rawValue {
-                        column.forEach({ (xPoint) in
-                            if case let .integer(point) = xPoint {
-                                xData.append(point)
-                            }
-                        })
-                    } else {
-                        var yData:[Int] = []
-                        column.forEach({ (yPoint) in
-                            if case let .integer(point) = yPoint {
-                                yData.append(point)
-                            }
-                            
-                        })
-                        chartsYData[name] = yData
-                    }
-                    
-                }
-            }
-            
-            var maxElements:[Int] = []
-            chartsYData.forEach({ maxElements.append($0.value.max() ?? 0) })
-            
-            let yHeightPointStep = height / CGFloat(integerLiteral: maxElements.max() ?? 0)
-            let xWidthPointStep = width/CGFloat(integerLiteral: xData.count)
+        if let chartData = chartData {
             chartsYData.forEach { (yData) in
                 let path = UIBezierPath()
                 path.lineWidth = 1.0
@@ -224,6 +233,19 @@ class ChartsNavigationView: UIView {
                 path.stroke()
             }
         }
+        detectSelectedChartRange()
+    }
+    
+    private func detectSelectedChartRange() {
+        let controllFrame = chartsControllView?.frame ?? .zero
+        var selectedColumnsIndexes: [Int] = []
+        for index in 0...(chartData?.columns.first?.count ?? 0) {
+            let xPos = CGFloat(index) * xWidthPointStep
+            if (controllFrame.minX...controllFrame.maxX).contains(xPos) {
+                selectedColumnsIndexes.append(index)
+            }
+        }
+        delegate?.selectedValues(indexes: selectedColumnsIndexes)
     }
     
     @objc private func chartsControllPan(gesture: UIPanGestureRecognizer) {
@@ -241,6 +263,7 @@ class ChartsNavigationView: UIView {
                 leftConstraint?.constant = initialLeftConstraintValue + point.x
                 rightConstraint?.constant = initialRightConstraintValue + point.x
             }
+            detectSelectedChartRange()
         } else if gesture.state == .ended {
             initialLeftConstraintValue = leftConstraint?.constant ?? 0
             initialRightConstraintValue = rightConstraint?.constant ?? 0
@@ -283,6 +306,7 @@ extension ChartsNavigationView: ChartsControllViewDelegate {
                      rightConstraint?.constant = initialRightConstraintValue + point.x
                 }
             }
+            detectSelectedChartRange()
         } else if gesture.state == .ended {
             initialLeftConstraintValue = leftConstraint?.constant ?? 0
             initialRightConstraintValue = rightConstraint?.constant ?? 0

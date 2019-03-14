@@ -14,7 +14,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        chartsView.chartsData = Utils.fetchChartsData()
+        let chartsData = Utils.fetchChartsData()
+        chartsView.update(chartData: chartsData?[3])
         chartsView.setNeedsLayout()
     }
 
