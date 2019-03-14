@@ -29,7 +29,7 @@ class ArrowView: UIView {
     }
     
     private func setup() {
-        backgroundColor = UIColor.lightGray
+        backgroundColor = R.color.chartsControlArrowsColor()
     }
     
     override func draw(_ rect: CGRect) {

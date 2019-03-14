@@ -33,6 +33,10 @@ class ChartsNavigationView: UIView {
     }
     
     fileprivate func setup() {
+       addChartsControllView()
+    }
+    
+    private func addChartsControllView() {
         chartsControllView = ChartsControllView()
         if let controllView = chartsControllView {
             controllView.delegate = self
@@ -68,7 +72,7 @@ class ChartsNavigationView: UIView {
                 toItem: self,
                 attribute: .bottom,
                 multiplier: 1,
-                constant:0)
+                constant:2)
             
             let topConstraint = NSLayoutConstraint(
                 item: controllView,
@@ -77,10 +81,92 @@ class ChartsNavigationView: UIView {
                 toItem: self,
                 attribute: .top,
                 multiplier: 1,
-                constant:0)
+                constant:-2)
             self.addConstraints([leftConstraint!, rightConstraint!, topConstraint, bottomConstraint])
             controllView.setNeedsLayout()
+            addHalfTransparentViews()
         }
+    }
+    
+    private func addHalfTransparentViews() {
+        let color = UIColor.init(red: 190/255, green: 190/255, blue: 190/255, alpha: 0.3)
+        let leftTransparentView = UIView()
+        leftTransparentView.translatesAutoresizingMaskIntoConstraints = false
+        leftTransparentView.backgroundColor = color
+        addSubview(leftTransparentView)
+        let leftViewLeftConstraint = NSLayoutConstraint(item: leftTransparentView,
+                                            attribute: .leading,
+                                            relatedBy: .equal,
+                                            toItem: self,
+                                            attribute: .leading,
+                                            multiplier: 1,
+                                            constant: 0)
+        
+        let leftViewRightConstraint = NSLayoutConstraint.init(item: leftTransparentView,
+                                                  attribute: .trailing,
+                                                  relatedBy: .equal,
+                                                  toItem: chartsControllView!,
+                                                  attribute: .leading,
+                                                  multiplier: 1,
+                                                  constant: 0)
+
+        let leftViewBottomConstraint = NSLayoutConstraint(
+            item: leftTransparentView,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .bottom,
+            multiplier: 1,
+            constant:0)
+        
+        let leftViewTopConstraint = NSLayoutConstraint(
+            item: leftTransparentView,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .top,
+            multiplier: 1,
+            constant:0)
+        self.addConstraints([leftViewLeftConstraint, leftViewRightConstraint, leftViewBottomConstraint, leftViewTopConstraint])
+        
+        let rightTransparentView = UIView()
+        rightTransparentView.translatesAutoresizingMaskIntoConstraints = false
+        rightTransparentView.backgroundColor = color
+        addSubview(rightTransparentView)
+        let rightViewLeftConstraint = NSLayoutConstraint(item: rightTransparentView,
+                                                attribute: .leading,
+                                                relatedBy: .equal,
+                                                toItem: chartsControllView!,
+                                                attribute: .trailing,
+                                                multiplier: 1,
+                                                constant: 0)
+        
+        let rightViewRightConstraint = NSLayoutConstraint.init(item: rightTransparentView,
+                                                      attribute: .trailing,
+                                                      relatedBy: .equal,
+                                                      toItem: self,
+                                                      attribute: .trailing,
+                                                      multiplier: 1,
+                                                      constant: 0)
+        
+        let rightViewBottomConstraint = NSLayoutConstraint(
+            item: rightTransparentView,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .bottom,
+            multiplier: 1,
+            constant:0)
+        
+        let rightViewTopConstraint = NSLayoutConstraint(
+            item: rightTransparentView,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .top,
+            multiplier: 1,
+            constant:0)
+        self.addConstraints([rightViewLeftConstraint, rightViewRightConstraint, rightViewBottomConstraint, rightViewTopConstraint])
     }
     
     override func draw(_ rect: CGRect) {
@@ -145,8 +231,12 @@ class ChartsNavigationView: UIView {
         if gesture.state == .changed {
             if initialLeftConstraintValue + point.x <= 0 {
                 leftConstraint?.constant = 0
+                initialLeftConstraintValue = 0
+                initialRightConstraintValue = rightConstraint?.constant ?? 0
             } else if initialRightConstraintValue + point.x >= 0 {
                 rightConstraint?.constant = 0
+                initialRightConstraintValue = 0
+                initialLeftConstraintValue = leftConstraint?.constant ?? 0
             } else {
                 leftConstraint?.constant = initialLeftConstraintValue + point.x
                 rightConstraint?.constant = initialRightConstraintValue + point.x
@@ -154,6 +244,8 @@ class ChartsNavigationView: UIView {
         } else if gesture.state == .ended {
             initialLeftConstraintValue = leftConstraint?.constant ?? 0
             initialRightConstraintValue = rightConstraint?.constant ?? 0
+        } else if gesture.state == .cancelled {
+            gesture.isEnabled = true
         }
     }
 }
