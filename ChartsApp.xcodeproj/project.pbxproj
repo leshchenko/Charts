@@ -65,7 +65,6 @@
 		86043983223A3B5300AB3089 /* ChartsApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChartsApp.entitlements; sourceTree = "<group>"; };
 		86043984223A556700AB3089 /* R.color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.color.swift; sourceTree = "<group>"; };
 		86043987223A55BF00AB3089 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
-		86043989223A577F00AB3089 /* ChartsApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChartsApp.entitlements; sourceTree = "<group>"; };
 		CC1257F12236DC48005C90F1 /* UIKitExtensions+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKitExtensions+UIColor.swift"; sourceTree = "<group>"; };
 		CC9BD5E62238153900439DEA /* ChartsControllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsControllView.swift; sourceTree = "<group>"; };
 		CC9BD5E822381B7600439DEA /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
@@ -120,7 +119,6 @@
 		8604393F2236415100AB3089 /* ChartsApp */ = {
 			isa = PBXGroup;
 			children = (
-				86043989223A577F00AB3089 /* ChartsApp.entitlements */,
 				86043986223A55AE00AB3089 /* Resources */,
 				CC1257EF2236DC06005C90F1 /* Extensions */,
 				8604397422365BA500AB3089 /* ChartsView */,
@@ -261,10 +259,10 @@
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Keychain = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -526,7 +524,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leshchenko.ChartsApp2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leshchenko.ChartsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -546,7 +544,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leshchenko.ChartsApp2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leshchenko.ChartsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
