@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var chartsView: ChartsView!
+    @IBOutlet weak var chartsView: ChartsNavigationView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
