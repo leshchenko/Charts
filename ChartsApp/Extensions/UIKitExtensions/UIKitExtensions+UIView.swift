@@ -14,4 +14,12 @@ extension UIView {
             addSubview(view)
         }
     }
+    
+    func addConstraints(constraints: [NSLayoutConstraint?]) {
+        constraints.forEach {
+            if let constraint = $0 {
+                addConstraint(constraint)
+            }
+        }
+    }
 }

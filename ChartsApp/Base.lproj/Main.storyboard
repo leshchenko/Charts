@@ -19,23 +19,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4N-Ar-y8I" customClass="ChartsNavigationView" customModule="ChartsApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="293.5" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="577" width="375" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="LAq-W6-cf2"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zr4-q2-MHb" customClass="ChartsView" customModule="ChartsApp" customModuleProvider="target">
+                                <rect key="frame" x="10" y="30" width="355" height="537"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.96573680639266968" green="0.97323840856552124" blue="0.97944086790084839" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Zr4-q2-MHb" secondAttribute="trailing" constant="10" id="4c8-Vl-ICk"/>
                             <constraint firstItem="m4N-Ar-y8I" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AZK-pq-d1E"/>
+                            <constraint firstItem="Zr4-q2-MHb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="MYA-Ck-ITf"/>
+                            <constraint firstItem="Zr4-q2-MHb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="QrS-za-mar"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m4N-Ar-y8I" secondAttribute="trailing" id="Urf-HI-RG2"/>
-                            <constraint firstItem="m4N-Ar-y8I" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="quk-VZ-KY9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="m4N-Ar-y8I" secondAttribute="bottom" constant="10" id="phl-9i-udg"/>
+                            <constraint firstItem="m4N-Ar-y8I" firstAttribute="top" secondItem="Zr4-q2-MHb" secondAttribute="bottom" constant="10" id="wu6-lp-FZj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="chartsView" destination="m4N-Ar-y8I" id="ZjC-zm-bSA"/>
+                        <outlet property="chartsNavigationView" destination="m4N-Ar-y8I" id="JW6-fJ-1g3"/>
+                        <outlet property="chartsView" destination="Zr4-q2-MHb" id="53A-lT-OJr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

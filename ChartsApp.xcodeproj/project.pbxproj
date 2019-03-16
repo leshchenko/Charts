@@ -22,6 +22,7 @@
 		86043985223A556700AB3089 /* R.color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86043984223A556700AB3089 /* R.color.swift */; };
 		86043988223A55BF00AB3089 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86043987223A55BF00AB3089 /* Resources.swift */; };
 		CC1257F22236DC48005C90F1 /* UIKitExtensions+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1257F12236DC48005C90F1 /* UIKitExtensions+UIColor.swift */; };
+		CC895BE9223A9CCE008D30B3 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC895BE8223A9CCE008D30B3 /* ChartsView.swift */; };
 		CC9BD5E72238153900439DEA /* ChartsControllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9BD5E62238153900439DEA /* ChartsControllView.swift */; };
 		CC9BD5E922381B7600439DEA /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9BD5E822381B7600439DEA /* ArrowView.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		86043984223A556700AB3089 /* R.color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.color.swift; sourceTree = "<group>"; };
 		86043987223A55BF00AB3089 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		CC1257F12236DC48005C90F1 /* UIKitExtensions+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKitExtensions+UIColor.swift"; sourceTree = "<group>"; };
+		CC895BE8223A9CCE008D30B3 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		CC9BD5E62238153900439DEA /* ChartsControllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsControllView.swift; sourceTree = "<group>"; };
 		CC9BD5E822381B7600439DEA /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +155,7 @@
 		8604397422365BA500AB3089 /* ChartsView */ = {
 			isa = PBXGroup;
 			children = (
+				CC895BE8223A9CCE008D30B3 /* ChartsView.swift */,
 				8604397522365BB900AB3089 /* ChartsNavigationView.swift */,
 				CC9BD5E62238153900439DEA /* ChartsControllView.swift */,
 				CC9BD5E822381B7600439DEA /* ArrowView.swift */,
@@ -340,6 +343,7 @@
 				CC1257F22236DC48005C90F1 /* UIKitExtensions+UIColor.swift in Sources */,
 				8604397322365B5800AB3089 /* Utils.swift in Sources */,
 				86043988223A55BF00AB3089 /* Resources.swift in Sources */,
+				CC895BE9223A9CCE008D30B3 /* ChartsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

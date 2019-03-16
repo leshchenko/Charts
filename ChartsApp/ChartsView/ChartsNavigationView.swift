@@ -124,13 +124,17 @@ class ChartsNavigationView: UIView {
                 attribute: .top,
                 multiplier: 1,
                 constant:-2)
-            self.addConstraints([leftConstraint!, rightConstraint!, topConstraint, bottomConstraint])
+            
+            self.addConstraints(constraints: [leftConstraint, rightConstraint, topConstraint, bottomConstraint])
             controllView.setNeedsLayout()
             addHalfTransparentViews()
         }
     }
     
     private func addHalfTransparentViews() {
+        guard chartsControllView != nil else {
+            return
+        }
         let color = UIColor.init(red: 190/255, green: 190/255, blue: 190/255, alpha: 0.3)
         let leftTransparentView = UIView()
         leftTransparentView.translatesAutoresizingMaskIntoConstraints = false
@@ -147,7 +151,7 @@ class ChartsNavigationView: UIView {
         let leftViewRightConstraint = NSLayoutConstraint.init(item: leftTransparentView,
                                                   attribute: .trailing,
                                                   relatedBy: .equal,
-                                                  toItem: chartsControllView!,
+                                                  toItem: chartsControllView,
                                                   attribute: .leading,
                                                   multiplier: 1,
                                                   constant: 0)
@@ -178,7 +182,7 @@ class ChartsNavigationView: UIView {
         let rightViewLeftConstraint = NSLayoutConstraint(item: rightTransparentView,
                                                 attribute: .leading,
                                                 relatedBy: .equal,
-                                                toItem: chartsControllView!,
+                                                toItem: chartsControllView,
                                                 attribute: .trailing,
                                                 multiplier: 1,
                                                 constant: 0)
@@ -239,7 +243,7 @@ class ChartsNavigationView: UIView {
     private func detectSelectedChartRange() {
         let controllFrame = chartsControllView?.frame ?? .zero
         var selectedColumnsIndexes: [Int] = []
-        for index in 0...(chartData?.columns.first?.count ?? 0) {
+        for index in 0..<(chartData?.columns.first?.count ?? 0) {
             let xPos = CGFloat(index) * xWidthPointStep
             if (controllFrame.minX...controllFrame.maxX).contains(xPos) {
                 selectedColumnsIndexes.append(index)
